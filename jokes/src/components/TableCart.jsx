@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { emojies } from "../constant/Emoji";
 import { Dialog } from "@headlessui/react";
 
-const TableCart = ({ addedProduct, setAddedProduct }) => {
+const TableCart = ({ addedProduct, setAddedProduct, handleData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
+  const [sortOption, setSortOption] = useState("");
+  
 
   const openModal = (id) => {
     setIsModalOpen(true);
@@ -66,9 +68,35 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
     0
   );
 
+  const handleSort = (option) => {
+    setSortOption(option);
+    if (option === "ratingHighToLow") {
+      const sortedProducts = [...addedProduct].sort((a, b) => b.rating - a.rating);
+      setAddedProduct(sortedProducts);
+    } else if (option === "ratingLowToHigh") {
+      const sortedProducts = [...addedProduct].sort((a, b) => a.rating - b.rating);
+      setAddedProduct(sortedProducts);
+    } else if (option === "reset") {
+      const initialData = JSON.parse(localStorage.getItem("cart")) || [];
+      setAddedProduct(initialData);
+    }
+  };
+  
   return (
     <>
       <div className="w-full overflow-x-auto bg-violet-200 rounded-md">
+      <div className="flex justify-end mb-4">
+          <select
+            className="bg-blue-600 text-white px-4 py-2 rounded-md mr-2 mt-2"
+            value={sortOption}
+            onChange={(e) => handleSort(e.target.value)}
+          >
+            <option value="">Sort by...</option>
+            <option value="ratingHighToLow">Rating: High to Low</option>
+            <option value="ratingLowToHigh">Rating: Low to High</option>
+            <option value="reset">Reset</option>
+          </select>
+        </div>
         <table className="table-auto w-full text-sm md:text-lg">
           <thead>
             <tr>
@@ -84,7 +112,16 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
           {addedProduct.length > 0 && (
             <tbody>
               {addedProduct?.map((item) => (
-                <tr key={item.id} className="text-center">
+                <tr
+                  key={item.id}
+                  className={`text-center ${
+                    item.rating > 4
+                      ? "bg-green-200"
+                      : item.rating >= 3 && item.rating <= 4
+                      ? "bg-blue-200"
+                      : "bg-red-200"
+                  }`}
+                >
                   <td className="border px-2 py-2 md:px-4">{item.title}</td>
                   <td className="border px-2 py-2 md:px-4">${item.price}</td>
                   <td className="border px-2 py-2 md:px-4">

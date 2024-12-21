@@ -63,6 +63,7 @@ const Cart = () => {
         <TableCart
           addedProduct={addedProduct}
           setAddedProduct={setAddedProduct}
+          handleData={handleData}
         />
       </div>
       <h2 className="text-center mt-2 text-3xl text-bold text-blue-200">
