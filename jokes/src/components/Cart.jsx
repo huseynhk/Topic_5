@@ -56,21 +56,20 @@ const Cart = () => {
 
   return (
     <>
-      <div className="my-4 mx-8 rounded-md">
+      <div className="my-4 mx-8 rounded-md font-poppins">
         <h2 className="text-center mb-4 text-3xl text-bold text-blue-200">
           Product Table
         </h2>
         <TableCart
           addedProduct={addedProduct}
           setAddedProduct={setAddedProduct}
-          handleData={handleData}
         />
       </div>
-      <h2 className="text-center mt-2 text-3xl text-bold text-blue-200">
+      <h2 className="text-center mt-2 text-3xl text-bold text-blue-200 font-poppins">
         Product Cards
       </h2>
       {!loading ? (
-        <ul className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 ">
+        <ul className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 font-poppins">
           {data?.map((product) => (
             <li
               key={product.id}
@@ -106,7 +105,7 @@ const Cart = () => {
           ))}
         </ul>
       ) : (
-        <div className="text-center mt-8">
+        <div className="text-center mt-8 font-poppins">
           <div className="spinner-border animate-spin inline-block w-12 h-12 border-4 border-t-4 border-blue-500 rounded-full"></div>
           <p className="mt-2 text-2xl text-blue-500">Loading Products...</p>
         </div>

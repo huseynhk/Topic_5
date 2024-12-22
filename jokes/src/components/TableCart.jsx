@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { emojies } from "../constant/Emoji";
 import { Dialog } from "@headlessui/react";
+import { toast } from "react-toastify";
 
-const TableCart = ({ addedProduct, setAddedProduct, handleData }) => {
+const TableCart = ({ addedProduct, setAddedProduct }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
   const [sortOption, setSortOption] = useState("");
-  
 
   const openModal = (id) => {
     setIsModalOpen(true);
@@ -25,6 +25,9 @@ const TableCart = ({ addedProduct, setAddedProduct, handleData }) => {
     setAddedProduct(updatedAddedProduct);
     localStorage.setItem("cart", JSON.stringify(updatedAddedProduct));
     setIsModalOpen(false);
+    toast.success("Product deleted successfully!", {
+      autoClose: 1500,
+    });
   };
 
   const handleIncrement = (id) => {
@@ -71,21 +74,25 @@ const TableCart = ({ addedProduct, setAddedProduct, handleData }) => {
   const handleSort = (option) => {
     setSortOption(option);
     if (option === "ratingHighToLow") {
-      const sortedProducts = [...addedProduct].sort((a, b) => b.rating - a.rating);
+      const sortedProducts = [...addedProduct].sort(
+        (a, b) => b.rating - a.rating
+      );
       setAddedProduct(sortedProducts);
     } else if (option === "ratingLowToHigh") {
-      const sortedProducts = [...addedProduct].sort((a, b) => a.rating - b.rating);
+      const sortedProducts = [...addedProduct].sort(
+        (a, b) => a.rating - b.rating
+      );
       setAddedProduct(sortedProducts);
     } else if (option === "reset") {
       const initialData = JSON.parse(localStorage.getItem("cart")) || [];
       setAddedProduct(initialData);
     }
   };
-  
+
   return (
     <>
-      <div className="w-full overflow-x-auto bg-violet-200 rounded-md">
-      <div className="flex justify-end mb-4">
+      <div className="w-full overflow-x-auto bg-violet-200 rounded-md font-poppins">
+        <div className="flex justify-end mb-4">
           <select
             className="bg-blue-600 text-white px-4 py-2 rounded-md mr-2 mt-2"
             value={sortOption}
@@ -189,7 +196,7 @@ const TableCart = ({ addedProduct, setAddedProduct, handleData }) => {
       <Dialog
         open={isModalOpen}
         onClose={closeModal}
-        className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50"
+        className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 font-poppins"
       >
         <div className="bg-white rounded-lg p-6 shadow-lg max-w-md mx-auto">
           <Dialog.Title className="text-lg font-bold text-gray-800">
