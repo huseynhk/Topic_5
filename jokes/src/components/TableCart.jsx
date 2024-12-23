@@ -140,21 +140,21 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
                     {item.brand ?? "Unknown"}
                   </td>
 
-                  <td className="border border-b-0 px-2 py-2 md:px-4  flex justify-center items-center">
+                  <td className="border border-b-0 px-3 py-2 md:px-4  flex justify-center items-center">
                     <button
-                      className="bg-red-500  mt-2 px-2 md:px-4 rounded-md text-white flex justify-center items-center"
+                      className="bg-red-500 hover:bg-red-600 transition-all duration-500  mt-2 px-2 md:px-4 rounded-md text-white flex justify-center items-center "
                       onClick={() => {
                         handleDecrement(item.id);
                       }}
                     >
                       -
                     </button>
-                    <span className="bg-indigo-500 mt-2 mx-2  rounded-full px-1 md:px-2 min-w-[36px] text-white flex justify-center items-center">
+                    <span className="bg-indigo-500 mt-2 mx-2  rounded-full  min-w-[34px] text-white flex justify-center items-center">
                       {item.quantity}
                     </span>
 
                     <button
-                      className="bg-green-500 mt-2 px-2 rounded-md md:px-4 text-white"
+                      className="bg-green-500  hover:bg-green-600 transition-all duration-500  mt-2 px-3 rounded-md md:px-4 text-white"
                       onClick={() => {
                         handleIncrement(item.id);
                       }}
