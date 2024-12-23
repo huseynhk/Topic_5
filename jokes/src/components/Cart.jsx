@@ -74,26 +74,33 @@ const Cart = () => {
             {data?.map((product) => (
               <li
                 key={product.id}
-                className="bg-violet-200 rounded-md shadow-md p-2 m-4"
+                className="bg-violet-200 rounded-md shadow-md px-2 py-3 m-4"
               >
-                <h2 className="text-lg font-semibold text-blue-600 mb-3">
+                <h2 className="text-lg font-semibold text-blue-600 mb-5 truncate">
                   {product.title}
                 </h2>
                 <img
                   src={product.images[0]}
                   alt={product.title}
-                  className="mb-5 w-full h-60 object-cover rounded-md"
+                  className="mb-5 w-full h-56 object-cover rounded-md"
                 />
-                <p className="text-gray-600 mb-2 font-semibold">
-                  {product.description.slice(0, 32)}...
+                <p className="text-gray-600 mb-2 font-semibold truncate">
+                  {product.description}
                 </p>
-                <strong className="text-cyan-600">$ {product.price}</strong>
+                <strong className="text-cyan-600">Price: {product.price} $</strong>
                 <div className="mt-2">
                   <p className="text-cyan-700 mt-2 font-semibold">
                     Rating: {product.rating}
                   </p>
                   <p className="text-blue-600 my-3 font-semibold">
-                    Brand: {product.brand ?? "Unknown"}
+                    Brand:
+                    <span
+                      className={`ml-1 ${
+                        product.brand ? "" : "text-slate-500"
+                      }`}
+                    >
+                      {product.brand ?? "Unknown"}
+                    </span>
                   </p>
                   <button
                     className={`text-white px-4 py-1 rounded-md ${

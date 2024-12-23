@@ -131,13 +131,23 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
                   }`}
                 >
                   <td className="border px-2 py-2 md:px-4">
-                    <img className="w-14 h-10 object-fill mx-auto" src={item.images[0]} alt={item.title} />
+                    <img
+                      className="w-14 h-10 object-fill mx-auto"
+                      src={item.images[0]}
+                      alt={item.title}
+                    />
                   </td>
 
-                  <td className="border px-2 py-2 md:px-4 font-medium">{item.title}</td>
+                  <td className="border px-2 py-2 md:px-4 font-medium">
+                    {item.title}
+                  </td>
                   <td className="border px-2 py-2 md:px-4">${item.price}</td>
                   <td className="border px-2 py-2 md:px-4">
-                    {item.brand ?? "Unknown"}
+                    <span
+                      className={item.brand ? "" : "text-slate-400"}
+                    >
+                      {item.brand ?? "Unknown"}
+                    </span>
                   </td>
 
                   <td className="border border-b-0 px-3 py-2 md:px-4  flex justify-center items-center">
@@ -164,7 +174,7 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
                   </td>
 
                   <td className="border px-2 py-2 md:px-4">
-                    <span className="md:text-xl mr-2 mb-2">
+                    <span className="md:text-xl mr-2 mb-2 inline-block  min-w-[36px]">
                       {item.rating.toFixed(1)}
                     </span>
                     <span className="md:text-xl">
@@ -172,7 +182,9 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
                     </span>
                   </td>
                   <td className="border px-2 py-2 md:px-4 ">
-                    <p className="min-w-[90px]">${(item.price * (item.quantity || 0)).toFixed(2)}</p>
+                    <p className="min-w-[95px]">
+                      ${(item.price * (item.quantity || 0)).toFixed(2)}
+                    </p>
                   </td>
 
                   <td className="border px-2 py-2 md:px-4">
