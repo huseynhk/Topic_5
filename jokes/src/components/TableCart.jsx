@@ -131,7 +131,7 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
                   }`}
                 >
                   <td className="border px-2 py-2 md:px-4">
-                    <img className="w-14 h-10 object-fill rounded-lg mx-auto" src={item.images[0]} alt={item.title} />
+                    <img className="w-14 h-10 object-fill mx-auto" src={item.images[0]} alt={item.title} />
                   </td>
 
                   <td className="border px-2 py-2 md:px-4 font-medium">{item.title}</td>
