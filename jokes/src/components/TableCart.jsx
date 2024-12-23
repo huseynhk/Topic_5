@@ -104,10 +104,11 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
             <option value="reset">Reset</option>
           </select>
         </div>
-        <table className="table-auto w-full text-sm md:text-lg">
+        <table className="table-auto w-full text-sm md:text-base">
           <thead>
             <tr>
-              <th className="px-2 py-2 md:px-4">Product</th>
+              <th className="px-2 py-2 md:px-4">Image</th>
+              <th className="px-2 py-2 md:px-4">Product Name</th>
               <th className="px-2 py-2 md:px-4">Price</th>
               <th className="px-2 py-2 md:px-4">Brand</th>
               <th className="px-2 py-2 md:px-4">Quantity</th>
@@ -129,27 +130,31 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
                       : "bg-red-200"
                   }`}
                 >
-                  <td className="border px-2 py-2 md:px-4">{item.title}</td>
+                  <td className="border px-2 py-2 md:px-4">
+                    <img className="w-16 h-10 object-fill rounded-lg" src={item.images[0]} alt={item.title} />
+                  </td>
+
+                  <td className="border px-2 py-2 md:px-4 font-medium">{item.title}</td>
                   <td className="border px-2 py-2 md:px-4">${item.price}</td>
                   <td className="border px-2 py-2 md:px-4">
                     {item.brand ?? "Unknown"}
                   </td>
 
-                  <td className="border px-2 py-2 md:px-4 flex justify-center items-center">
+                  <td className="border border-b-0 px-2 py-2 md:px-4  flex justify-center items-center">
                     <button
-                      className="bg-red-500  px-2 md:px-4 rounded-md text-white flex justify-center items-center"
+                      className="bg-red-500  mt-2 px-2 md:px-4 rounded-md text-white flex justify-center items-center"
                       onClick={() => {
                         handleDecrement(item.id);
                       }}
                     >
                       -
                     </button>
-                    <span className="bg-indigo-500 mx-2 md:mx-1 rounded-full px-1 md:px-2 text-white flex justify-center items-center">
+                    <span className="bg-indigo-500 mt-2 mx-2 md:mx-1 rounded-full px-1 md:px-2 text-white flex justify-center items-center">
                       {item.quantity}
                     </span>
 
                     <button
-                      className="bg-green-500 px-2 rounded-md md:px-4 text-white"
+                      className="bg-green-500 mt-2 px-2 rounded-md md:px-4 text-white"
                       onClick={() => {
                         handleIncrement(item.id);
                       }}
@@ -159,10 +164,10 @@ const TableCart = ({ addedProduct, setAddedProduct }) => {
                   </td>
 
                   <td className="border px-2 py-2 md:px-4">
-                    <span className="text-md md:text-xl mr-2 mb-2">
+                    <span className="md:text-xl mr-2 mb-2">
                       {item.rating.toFixed(1)}
                     </span>
-                    <span className="text-lg md:text-2xl">
+                    <span className="md:text-xl">
                       {handleEmoji(item.rating)}
                     </span>
                   </td>
